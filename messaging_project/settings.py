@@ -45,7 +45,15 @@ INSTALLED_APPS = [
 
 # Channels
 ASGI_APPLICATION = 'messaging_project.routing.application'
-
+# docker run -p 6379:6379 -d redis:5
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
